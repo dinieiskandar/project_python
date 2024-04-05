@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+</head>
+
+<!--login-->
+<body>
+  <div class="container">
+    <div class="login form">
+      <header>Login</header>
+
+      <!--security feature-->
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <!--for users to key in their data-->
+        <input type="text" placeholder="Enter email" name="email">
+        <input type="password" placeholder="Enter password" name="password">
+        <input type="submit" class="button" value="Login">
+
+        <!--if success and if error-->
+        <center>
+          {% if success %}
+          <p style="color: lightgreen;"><b>{{ success }}</b></p>
+          {% endif %}
+          {% if error %}
+          <p style="color: #8B0000;">{{ error }}</p>
+          {% endif %}
+        </center>
+      </form>
+
+      <!--register-->
+      <div class="signup">
+        <span class="signup">Don't have an account?
+         <a href="{% url 'register' %}"><label for="check">Sign Up</label></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

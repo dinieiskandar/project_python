@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Register</title>
+</head>
+
+<!--register-->
+<body>
+  <div class="container">
+    <div class="registration form">
+      <header>Sign Up</header>
+      
+      <!--security feature-->
+      <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <!--for users to key in their data-->
+        <input type="text" placeholder="Enter first name" name="first_name">
+        <input type="text" placeholder="Enter last name" name="last_name">
+        <input type="text" placeholder="Enter email" name="email">
+        <input type="password" placeholder="Create a password" name="password1">
+        <input type="password" placeholder="Repeat password" name="password2">
+        <input type="submit" class="button" value="Sign Up">
+
+        <!--if theres an error with register-->
+        <center>
+          {% if error %}
+          <p style="color: red;">{{ error }}</p>
+          {% endif %}
+        </center>
+      </form>
+
+      <!--login-->
+      <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="{% url 'login' %}"><label for="check">Sign In</label></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

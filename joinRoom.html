@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Join Room</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="login form">
+      <header>Join Room</header>
+
+      <!--security feature-->
+      <form action="{% url 'join_room' %}" method="POST">
+        {% csrf_token %}
+        <!--for users to enter-->
+        <input type="text" placeholder="Enter the room ID" name="roomID">
+        <input type="submit" class="button" value="Join">
+
+        <!--if success and if error-->
+        <center>
+          {% if success %}
+          <p style="color: lightgreen;"><b>{{ success }}</b></p>
+          {% endif %}
+          {% if error %}
+          <p style="color: #8B0000;">{{ error }}</p>
+          {% endif %}
+        </center>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
